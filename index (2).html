@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F8F3ED">
+<meta name="description" content="الموقع الشخصي لرغد، مطوّرة واجهات ويب، لاستعراض المهارات التقنية والمشاريع وأعمال التصميم وطرق التواصل.">
+<title>رغد هاشم | مطوّرة واجهات أمامية</title>
+<meta property="og:title" content="رغد هاشم | مطوّرة واجهات أمامية">
+<meta property="og:description" content="الموقع الشخصي لرغد، مطوّرة واجهات ويب، لاستعراض المهارات التقنية والمشاريع وأعمال التصميم وطرق التواصل.">
+<meta property="og:type" content="website">
+<!-- TODO: استبدلي الرابط بصورة المشاركة الحقيقية (رابط مطلق) -->
+<meta property="og:image" content="https://example.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== الهوية البصرية: Terracotta & Beige ===== */
+:root{
+  --bg:#F8F3ED; --primary:#D6A18A; --secondary:#B76E52; --text:#49382F;
+  --card:#EFE2D7; --muted:#806B5F; --line:#E2C7B8; --cream:#F8F3ED;
+  --r:22px; --shadow:0 10px 30px rgba(183,110,82,.10);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Tajawal',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden;position:relative}
+/* شبكة زخرفية خفيفة جدًا */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(183,110,82,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(183,110,82,.045) 1px,transparent 1px);
+  background-size:48px 48px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--secondary);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1160px,92%);margin-inline:auto}
+section{padding:clamp(56px,8vw,100px) 0}
+.hl{color:var(--secondary);font-weight:700}
+.divider{text-align:center;color:var(--primary);letter-spacing:.6em;font-size:.8rem;padding:6px 0;user-select:none}
+
+/* ===== أزرار ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 28px;border-radius:999px;font:700 1rem var(--sans);cursor:pointer;border:1.5px solid var(--secondary);transition:transform .25s,background .25s,color .25s,box-shadow .25s}
+.btn-solid{background:var(--secondary);color:var(--cream)}
+.btn-solid:hover{background:#a35d43;transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--secondary);border-color:var(--primary)}
+.btn-ghost:hover{background:var(--card);border-color:var(--secondary);transform:translateY(-2px)}
+
+/* ===== Navbar ===== */
+header{position:sticky;top:0;z-index:50;background:rgba(248,243,237,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.logo{font:700 1.5rem var(--serif);letter-spacing:.06em;direction:ltr}
+.logo span{color:var(--secondary)}
+.links{display:flex;gap:30px;list-style:none}
+.links a{position:relative;font-weight:500;color:var(--muted);padding:6px 0;transition:color .25s}
+.links a::after{content:"";position:absolute;inset-inline-start:0;bottom:0;height:2px;width:0;background:var(--secondary);transition:width .3s}
+.links a:hover,.links a.active{color:var(--secondary)}
+.links a:hover::after,.links a.active::after{width:100%}
+.nav .btn{min-height:42px;padding:6px 22px;font-size:.95rem}
+.menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--secondary);font-size:1.4rem}
+
+/* ===== Hero ===== */
+.hero{padding-top:clamp(40px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,70px);align-items:center;min-height:72vh}
+.kicker{font:600 .95rem var(--serif);letter-spacing:.22em;color:var(--secondary);direction:ltr;text-align:right}
+.hero h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.35;font-weight:800;margin:14px 0 8px}
+.hero .name{font:italic 600 clamp(2.4rem,5vw,3.8rem) var(--serif);color:var(--secondary);direction:ltr;text-align:right;line-height:1.1;margin-bottom:18px}
+.hero p.intro{color:var(--muted);font-size:1.05rem;max-width:62ch}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin:28px 0 20px}
+.welcome{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.95rem}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--secondary);flex:none}
+.photo-side{position:relative;display:flex;justify-content:center;padding:20px}
+.frame{position:relative;width:min(340px,78vw);aspect-ratio:3/4}
+.frame::before{content:"";position:absolute;inset:0;border-radius:999px 999px 40px 40px;background:var(--primary);opacity:.55;transform:rotate(-6deg)}
+.frame .img{position:absolute;inset:0;border-radius:999px 999px 40px 40px;overflow:hidden;border:6px solid var(--cream);box-shadow:var(--shadow);background:var(--card)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(239,226,215,.55))}
+.vtext{position:absolute;inset-inline-end:-6px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;direction:ltr;font:600 .78rem var(--serif);letter-spacing:.3em;color:var(--muted)}
+.float-card{position:absolute;inset-inline-start:-10px;bottom:34px;background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:12px 20px;box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite}
+.float-card strong{display:block;color:var(--secondary);font-size:1.05rem;line-height:1.5}
+.float-card small{color:var(--muted)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* ===== عناوين الأقسام ===== */
+.head{margin-bottom:40px}
+.eyebrow{font:600 .9rem var(--serif);letter-spacing:.25em;color:var(--secondary);direction:ltr;text-align:right}
+.head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:800;line-height:1.4}
+.head p{color:var(--muted);max-width:60ch}
+
+/* ===== About ===== */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:stretch}
+.quote{position:relative;border-radius:var(--r);padding:40px 30px;border:1px solid rgba(183,110,82,.28);background:linear-gradient(145deg,var(--card),rgba(214,161,138,.45));display:flex;flex-direction:column;justify-content:center}
+.quote::before{content:"\201D";font:700 7rem/0.6 var(--serif);color:var(--secondary);opacity:.55;display:block;margin-bottom:10px;direction:ltr;text-align:right}
+.quote p{font-size:1.25rem;font-style:italic;font-weight:500;line-height:2}
+.bio{color:var(--muted);font-size:1.05rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 12px;text-align:center;transition:transform .3s,border-color .3s}
+.stat:hover{transform:translateY(-4px);border-color:var(--primary)}
+.stat .num{font:700 clamp(2.2rem,4vw,3rem) var(--serif);color:var(--secondary);line-height:1.1;direction:ltr}
+.stat span{color:var(--muted);font-size:.95rem}
+
+/* ===== Skills ===== */
+.cards2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{background:linear-gradient(160deg,var(--card),var(--cream));border:1px solid var(--line);border-radius:var(--r);padding:32px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--secondary);box-shadow:var(--shadow)}
+.skill-top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.ico{width:54px;height:54px;border-radius:16px;background:rgba(183,110,82,.14);color:var(--secondary);display:grid;place-items:center;flex:none}
+.ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.skill-top h3{font-size:1.3rem;line-height:1.3}
+.skill-top small{font:600 .95rem var(--serif);color:var(--muted);letter-spacing:.08em;direction:ltr;display:block}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tag{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:4px 16px;font-size:.92rem;direction:ltr}
+
+/* ===== Projects ===== */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.project{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:300px;background:var(--card)}
+.project .no{position:absolute;inset-inline-start:18px;top:-6px;font:700 5.5rem/1 var(--serif);color:var(--secondary);opacity:.12;pointer-events:none;direction:ltr}
+.project .cat{font:600 .85rem var(--serif);letter-spacing:.2em;color:var(--secondary);direction:ltr;text-align:right;margin-top:22px}
+.project h3{font-size:1.25rem;margin:6px 0 8px;line-height:1.5}
+.project p{color:var(--muted);font-size:.97rem;flex:1;margin-bottom:18px}
+.project .foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;color:var(--secondary);font-size:1.15rem;flex:none;transition:background .25s,color .25s,transform .25s}
+.arrow:hover{background:var(--secondary);color:var(--cream);transform:rotate(-8deg) scale(1.06)}
+
+/* ===== Certificates ===== */
+.cert{display:flex;flex-direction:column;gap:12px;padding:18px}
+.thumb{position:relative;display:block;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--bg);cursor:zoom-in;padding:0}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.thumb:hover img{transform:scale(1.04)}
+.thumb .zoom{position:absolute;inset-inline-start:10px;bottom:10px;background:rgba(248,243,237,.92);color:var(--secondary);border-radius:999px;padding:2px 14px;font-size:.85rem;font-weight:700}
+.cert h3{font-size:1.1rem;line-height:1.6;padding-inline:6px}
+.cert .issuer{color:var(--muted);font-size:.95rem;padding-inline:6px;flex:1}
+.cert .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-inline:6px}
+.cert .year{font:600 1.05rem var(--serif);color:var(--secondary);direction:ltr;letter-spacing:.08em}
+/* نافذة تكبير الشهادة */
+dialog.lightbox{border:none;background:transparent;padding:0;max-width:min(94vw,1000px);max-height:92vh;margin:auto;overflow:visible}
+dialog.lightbox::backdrop{background:rgba(73,56,47,.6);backdrop-filter:blur(3px)}
+.lb-box{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px;position:relative}
+.lb-box img{max-height:76vh;width:auto;margin:auto;border-radius:12px}
+.lb-cap{text-align:center;color:var(--muted);margin-top:10px;font-size:.95rem}
+.lb-close{position:absolute;top:-14px;inset-inline-end:-14px;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--secondary);background:var(--secondary);color:var(--cream);font-size:1.1rem;cursor:pointer}
+.lb-close:hover{background:#a35d43}
+
+/* ===== Contact ===== */
+.panel{position:relative;overflow:hidden;border-radius:30px;border:1px solid var(--line);padding:clamp(28px,5vw,60px);background:linear-gradient(150deg,var(--card),var(--cream))}
+.panel::before{content:"";position:absolute;inset-inline-end:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(214,161,138,.5),transparent 70%)}
+.contact-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.contact-grid h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;line-height:1.4;margin:4px 0 10px}
+.contact-grid p{color:var(--muted)}
+.socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.socials a{display:inline-flex;align-items:center;min-height:44px;padding:6px 20px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:500;direction:ltr;transition:all .25s}
+.socials a:hover{border-color:var(--secondary);color:var(--secondary);transform:translateY(-2px)}
+.mail{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:28px;text-align:center}
+.mail h3{margin-bottom:6px}
+.mail .mrow{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.mail .addr{display:block;font:600 1.15rem var(--serif);color:var(--secondary);direction:ltr;margin-bottom:18px;word-break:break-all}
+
+/* ===== Footer ===== */
+footer{padding:20px 0 40px;text-align:center}
+footer p{margin-top:14px}
+footer small{display:block;color:var(--muted);margin-top:4px}
+
+/* ===== ظهور تدريجي ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== التجاوب ===== */
+@media (max-width:980px){
+  .grid3{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .menu-btn{display:grid;place-items:center}
+  .nav>.btn{display:none}
+  .links{position:absolute;top:72px;inset-inline:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 4%;max-height:0;overflow:hidden;visibility:hidden;transition:max-height .35s ease,visibility .35s}
+  .links.open{max-height:420px;visibility:visible}
+  .links a{display:block;padding:14px 4px;border-bottom:1px solid var(--line)}
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .photo-side{order:-1}
+  .cards2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  .grid3{grid-template-columns:1fr}
+  .cta .btn{flex:1 1 100%}
+}
+
+/* تقليل الحركة */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav" aria-label="التنقل الرئيسي">
+    <a href="#home" class="logo" aria-label="R.GHABEN - الرئيسية">R<span>.</span>GHABEN</a>
+    <ul class="links" id="links">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#about">عني</a></li>
+      <li><a href="#skills">المهارات</a></li>
+      <li><a href="#work">الأعمال</a></li>
+      <li><a href="#certificates">الشهادات</a></li>
+      <li><a href="#contact">التواصل</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-solid">لنتحدث</a>
+    <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" aria-controls="links">☰</button>
+  </nav>
+</header>
+
+<main>
+<!-- ================= Hero ================= -->
+<section id="home" class="hero">
+  <div class="wrap">
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div>
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="kicker">FRONT-END DEVELOPER</div>
+        <h1>أحول الأفكار إلى تجارب رقمية تفاعلية وسلسة</h1>
+        <!-- TODO: عدّلي الاسم هنا -->
+        <div class="name">Raghad Hash'em</div>
+        <p class="intro">موسّعة أفق ومطورة واجهات أمامية (Front-End Developer) متخصصة في هندسة وبناء تجارب رقمية تفاعلية، سلسة، وعالية الأداء. أمتلك أساساً أكاديمياً متيناً في تخصص تطوير البرمجيات، وأوظف خبرتي في استخدام HTML5 وCSS3 وJavaScript (ES6+) وإطار عمل React.js لتحويل الأفكار المعقدة إلى واجهات مستخدم نظيفة ومتجاوبة مع مختلف الأجهزة، مع الالتزام بأفضل ممارسات البرمجة النظيفة وهندسة الكود.</p>
+        <div class="cta">
+          <a href="#work" class="btn btn-solid">استكشف أعمالي</a>
+          <a href="#contact" class="btn btn-ghost">تواصل معي</a>
+        </div>
+        <div class="welcome"><span class="dot"></span>أرحب بالأفكار والمشاريع الجديدة</div>
+      </div>
+      <div class="photo-side reveal">
+        <div class="frame">
+          <div class="img">
+            <!-- TODO: استبدلي قيمة src برابط صورتك (مثال: images/me.jpg) -->
+            <img id="profileImg" alt="الصورة الشخصية لرغد" width="340" height="453"
+              src="images/portfolioImage.jpeg">
+          </div>
+          <div class="vtext" aria-hidden="true">FRONT-END DEVELOPER · CREATIVE THINKER</div>
+          <div class="float-card"><strong>تصميم + كود</strong><small>تفاصيل تصنع الفرق</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div>
+  </div>
+</section>
+
+<!-- ================= About ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">ABOUT ME</div>
+      <h2>نبذة عني</h2>
+      <p>أؤمن أن أفضل الحلول تبدأ بفكرة بسيطة وتنمو بالفضول والتجربة.</p>
+    </div>
+    <div class="about-grid">
+      <blockquote class="quote reveal"><p>الجودة ليست تفصيلاً إضافياً؛ بل هي الطريقة التي تتحول بها الفكرة الجيدة إلى تجربة لا تُنسى.</p></blockquote>
+      <div class="bio reveal">
+        <p>أنا رغد، مطوّرة <span class="hl">واجهات أمامية (Front-End Developer)</span> وأحد متحصّصي <span class="hl">تطوير البرمجيات</span> المهتمين ببناء مواقع وتجارب رقمية تجمع بين الجمال والوظيفة. أعمل على تحويل التصاميم والأفكار المعقدة إلى صفحات تفاعلية، متجاوبة، وسهلة الاستخدام، مع توظيف خبرتي في <span class="hl">HTML5</span> و<span class="hl">CSS3</span> و<span class="hl">JavaScript (ES6+)</span> وإطار عمل <span class="hl">React.js</span>، إلى جانب <span class="hl">Git</span> و<span class="hl">GitHub</span> لتنظيم العمل والتعاون. أمتلك أساساً أكاديمياً متيناً وأسعى دائماً للتطوير المستمر من خلال المشاريع العملية وحل المشكلات، مع الالتزام بأفضل ممارسات <span class="hl">البرمجة النظيفة</span> وصناعة واجهات تهتم بأدق التفاصيل لتخدم المستخدم بأعلى كفاءة</p>
+      </div>
+    </div>
+    <!-- الأرقام تجريبية: عدّلي data-count والنص اللاحق (data-suffix) -->
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="6" data-suffix="+">0</div><span>مشاريع وتجارب</span></div>
+      <div class="stat reveal"><div class="num" data-count="4" data-suffix="+">0</div><span>تقنيات أستخدمها</span></div>
+      <div class="stat reveal"><div class="num" data-count="1" data-suffix="+">0</div><span>مشاريع جماعية</span></div>
+      <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><span>شغف بالتعلّم</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Skills ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div><br>
+    <div class="head reveal">
+      <div class="eyebrow">EXPERTISE</div>
+      <h2>مهاراتي</h2>
+      <p>أدوات وتقنيات أستخدمها لبناء تجارب رقمية عملية وجذابة.</p>
+    </div>
+    <div class="cards2">
+      <!-- لإضافة بطاقة جديدة: انسخي أحد عناصر article.card -->
+      <article class="card reveal">
+        <div class="skill-top">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></div>
+          <div><h3>تطوير الويب</h3><small>Web Development</small></div>
+        </div>
+        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Responsive Design</span><span class="tag">Tailwind CSS</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="skill-top">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.6-.6-.6-2.6z"/></svg></div>
+          <div><h3>الأدوات والعمل التقني</h3><small>Tools &amp; Technology</small></div>
+        </div>
+        <div class="tags"><span class="tag">Git &amp; GitHub</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Figma</span><span class="tag">UI/UX Basics</span><span class="tag">AI Productivity Tools</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Projects ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div><br>
+    <div class="head reveal">
+      <div class="eyebrow">SELECTED WORK</div>
+      <h2>مشاريع مختارة</h2>
+      <p>نماذج من مشاريع الويب والتطبيقات التي عملت عليها.</p>
+    </div>
+    <div class="grid3" id="projects"></div>
+  </div>
+</section>
+
+<!-- ================= Certificates ================= -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div><br>
+    <div class="head reveal">
+      <div class="eyebrow">CERTIFICATES</div>
+      <h2>شهاداتي</h2>
+      <p>دورات وشهادات ساهمت في تطوير مهاراتي التقنية.</p>
+    </div>
+    <!-- تُبنى البطاقات من مصفوفة CERTS في قسم السكربت -->
+    <div class="grid3" id="certs"></div>
+  </div>
+</section>
+
+<!-- ================= Contact ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="panel reveal">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow">GET IN TOUCH</div>
+          <h2>لنعمل على فكرة مميزة</h2>
+          <p>لديك فكرة موقع أو مشروع يحتاج إلى واجهة مرتبة وتجربة استخدام أفضل؟ يسعدني أن أسمع منك ونتحدث عن التفاصيل.</p>
+          <!-- TODO: استبدلي الروابط بحساباتك الفعلية، واحذفي المنصات غير المستخدمة -->
+          <div class="socials">
+            <a href="https://github.com/raghadhashem" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/raghad-hashem-a4941a441/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com/raghad_emadeldin/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
+        </div>
+        <div class="mail">
+          <h3>البريد الإلكتروني</h3>
+          <!-- TODO: بريد تجريبي، استبدليه ببريدك الحقيقي في الموضعين -->
+          <span class="addr">your.email@example.com</span>
+          <a class="btn btn-solid" href="mailto:your.email@example.com">إرسال بريد إلكتروني</a>
+          <div class="mrow">
+            <h3>رقم الجوال</h3>
+            <!-- TODO: رقم تجريبي، استبدليه برقمك في الموضعين (النص ورابط tel:) — اكتبي الرابط بالصيغة الدولية بدون مسافات -->
+            <span class="addr">+972 567697222</span>
+            <a class="btn btn-ghost" href="tel:+970500000000">اتصال</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="divider" aria-hidden="true">◆ ◆ ◆</div>
+    <p>صُمّم وطُوّر بعناية بواسطة <span class="hl">رغد</span></p>
+    <small>مطوّرة واجهات ويب · فلسطين 🇵🇸 · جميع الحقوق محفوظة © <span id="year">2026</span></small>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="عرض الشهادة">
+  <div class="lb-box">
+    <button type="button" class="lb-close" id="lbClose" aria-label="إغلاق">✕</button>
+    <img id="lbImg" alt="">
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
+</dialog>
+
+<script>
+/* ===== بيانات المشاريع: عدّلي الاسم والوصف والوسوم والرابط هنا ===== */
+/* الروابط الحالية مؤقتة (YOUR-USERNAME) — استبدليها بروابط المستودعات الفعلية */
+const PROJECTS = [
+  {cat:"WEB PLATFORM", name:"منصة نضارة الطبية", url:"https://github.com/Nadara-Project/Frontend.git",
+   desc:"منصة طبية جلديّة تفاعلية تربط بين المرضى والأطباء، تتيح استكشاف الخدمات واستعراض العيادات وحجز المواعيد بسلاسة عبر واجهة مستخدم عربية سهلة ومتجاوبة.",
+   tags:["React","CSS","RTL"]},
+  {cat:"FRONT-END", name:"Coffee Shop Website", url:"https://github.com/raghadhashem/Coffee-Shop.git",
+   desc:"موقع تفاعلي لمقهى عصري يوفر تجربة تصفّح سلسة لاستعراض قائمة المشروبات والمأكولات، مع تصميم أنيق ومتجاوب يُبرز الهوية البصرية للمقهى ويسهّل طلب الطلبات.",
+   tags:["React.js","Tailwind CSS","JavaScript","RTL"]},
+  {cat:"CYBERSECURITY", name:"RSA Digital Signature", url:"https://github.com/raghadhashem/RSA-Digital-Signature-Using-Java.git",
+   desc:"تطبيق تعليمي يوقّع الرسائل رقميًا باستخدام RSA ويتحقق من صحة التوقيع لضمان سلامة الرسالة.",
+   tags:["Java","RSA","SHA-256"]},
+  {cat:"FRONT-END", name:"صفحة بورتفوليو", url:"https://github.com/raghadhashem/portfoilo.git",
+   desc:"صفحة شخصية متجاوبة تعرض المهارات والمشاريع وطرق التواصل بتصميم عربي واضح ولمسات طوبية دافئة.",
+   tags:["HTML","CSS","JavaScript"]},
+  /* بطاقتان مؤقتتان لإكمال الشبكة (6 بطاقات): استبدليهما بمشروعين حقيقيين أو احذفيهما */
+  {cat:"PLACEHOLDER", name:"مشروع قادم (مؤقت)", url:"https://github.com/raghadhashem",
+   desc:"مساحة محجوزة لمشروع جديد. عدّلي العنوان والوصف والوسوم والرابط من مصفوفة PROJECTS داخل الكود.",
+   tags:["Tech","Tech"]},
+  {cat:"PLACEHOLDER", name:"مشروع قادم (مؤقت)", url:"https://github.com/raghadhashem",
+   desc:"مساحة محجوزة لمشروع جديد. عدّلي العنوان والوصف والوسوم والرابط من مصفوفة PROJECTS داخل الكود.",
+   tags:["Tech","Tech"]}
+];
+
+/* ===== بناء بطاقات المشاريع ===== */
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('projects').innerHTML = PROJECTS.map((p, i) => `
+  <article class="card project reveal">
+    <span class="no" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+    <div class="cat">${esc(p.cat)}</div>
+    <h3>${esc(p.name)}</h3>
+    <p>${esc(p.desc)}</p>
+    <div class="foot">
+      <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      <a class="arrow" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" aria-label="فتح مستودع ${esc(p.name)} على GitHub">↗</a>
+    </div>
+  </article>`).join('');
+
+/* ===== الشهادات: عدّلي أو أضيفي شهادة بنسخ سطر {…} ===== */
+/* img: مسار صورة الشهادة (مثال: images/certificates/cert1.jpg) — اتركيه "" لعرض صورة بديلة مؤقتة */
+/* url: رابط التحقق من الشهادة (اختياري) — اتركيه "" إذا لا يوجد */
+const CERTS = [
+  {title:"Claude Code 101", issuer:"Anthropic", year:"2026", img:"images/claude-code-101.jpg", url:""},
+  {title:"AI Fluency: Framework & Foundations", issuer:"Anthropic", year:"2026", img:"images/AI Fluency Framework & Foundations.jpg", url:""},
+  {title:"Claude with the Anthropic API", issuer:"Anthropic", year:"2026", img:"images/Claude with the Anthropic API.jpg", url:""},
+  {title:"CodeMap 2026", issuer:"TAQAT", year:"2026", img:"images/TAQAT-certificate-Raghad-Hashem-TQ-2026-00517.png", url:""}
+];
+/* صورة بديلة مؤقتة على شكل شهادة فارغة */
+const PH_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#F8F3ED'/>" +
+  "<rect x='14' y='14' width='372' height='272' rx='10' fill='none' stroke='#D6A18A' stroke-width='3'/>" +
+  "<rect x='28' y='28' width='344' height='244' rx='6' fill='none' stroke='#E2C7B8'/>" +
+  "<rect x='110' y='80' width='180' height='10' rx='5' fill='#D6A18A'/><rect x='140' y='108' width='120' height='7' rx='3' fill='#E2C7B8'/>" +
+  "<rect x='90' y='140' width='220' height='6' rx='3' fill='#E2C7B8'/><rect x='110' y='158' width='180' height='6' rx='3' fill='#E2C7B8'/>" +
+  "<circle cx='200' cy='222' r='24' fill='#B76E52' opacity='.85'/></svg>");
+document.getElementById('certs').innerHTML = CERTS.map((c, i) => `
+  <article class="card cert reveal">
+    <button type="button" class="thumb" data-i="${i}" aria-label="تكبير شهادة ${esc(c.title)}">
+      <img src="${esc(c.img || PH_IMG)}" alt="شهادة: ${esc(c.title)}" loading="lazy" onerror="this.onerror=null;this.src=PH_IMG">
+      <span class="zoom">تكبير</span>
+    </button>
+    <h3>${esc(c.title)}</h3>
+    <div class="issuer">${esc(c.issuer)}</div>
+    <div class="foot">
+      <span class="year">${esc(c.year)}</span>
+      ${c.url ? `<a class="arrow" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer" aria-label="التحقق من شهادة ${esc(c.title)}">↗</a>` : ''}
+    </div>
+  </article>`).join('');
+
+/* نافذة تكبير الشهادة */
+const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+document.getElementById('certs').addEventListener('click', e => {
+  const b = e.target.closest('.thumb'); if (!b) return;
+  const c = CERTS[+b.dataset.i];
+  lbImg.src = c.img || PH_IMG; lbImg.alt = 'شهادة: ' + c.title;
+  lbCap.textContent = c.title + ' · ' + c.issuer + ' · ' + c.year;
+  lb.showModal();
+});
+document.getElementById('lbClose').addEventListener('click', () => lb.close());
+lb.addEventListener('click', e => { if (e.target === lb) lb.close(); }); /* الضغط خارج الصورة يغلق */
+
+/* ===== قائمة الهاتف ===== */
+const links = document.getElementById('links');
+const menuBtn = document.getElementById('menuBtn');
+const setMenu = open => {
+  links.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+  menuBtn.textContent = open ? '✕' : '☰';
+};
+menuBtn.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+/* ===== سنة حقوق النشر ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== الحركات ===== */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ظهور تدريجي */
+const revealEls = document.querySelectorAll('.reveal');
+if (reduce || !('IntersectionObserver' in window)) {
+  revealEls.forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); obs.unobserve(en.target); } });
+  }, { threshold: .15 });
+  revealEls.forEach(el => io.observe(el));
+}
+
+/* عدّادات تصاعدية (مرة واحدة لكل بطاقة) */
+const counters = document.querySelectorAll('[data-count]');
+const finish = el => { el.textContent = el.dataset.count + (el.dataset.suffix || ''); };
+const run = el => {
+  const target = +el.dataset.count, dur = 1600, t0 = performance.now();
+  const tick = now => {
+    const p = Math.min((now - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased) + (p === 1 ? (el.dataset.suffix || '') : '');
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+if (reduce || !('IntersectionObserver' in window)) {
+  counters.forEach(finish);
+} else {
+  const co = new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => { if (en.isIntersecting) { run(en.target); obs.unobserve(en.target); } });
+  }, { threshold: .6 });
+  counters.forEach(el => co.observe(el));
+}
+
+/* تمييز الرابط النشط أثناء التمرير */
+const sections = document.querySelectorAll('main section[id]');
+if ('IntersectionObserver' in window) {
+  const so = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        links.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => so.observe(s));
+}
+</script>
+</body>
+</html>
